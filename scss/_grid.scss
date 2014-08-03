@@ -1,0 +1,72 @@
+$numCols: 12;
+$gutter: 5px;
+
+.container-fluid{
+  @include clearfix;
+  margin: 0 auto;
+  padding-left: $gutter;
+  padding-right: $gutter;
+}
+
+.row{
+  @include clearfix;
+  margin: 0 auto;
+  .col{
+    .row{
+      .col{
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.col{
+  min-height: 1px;
+  float: left;
+  padding-left: $gutter;
+  padding-right: $gutter;
+}
+
+@for $i from 1 through $numCols{
+
+  .col-#{$i}{
+    width: percentage(1);
+  }
+
+}
+
+@media only screen and (min-width: 1200px) {
+  .row{
+    @include clearfix;
+    margin: 0 auto;
+    .col{
+      .row{
+        .col:first-child{
+          padding-left: 0;
+        }
+        .col:last-child{
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  .col{
+    min-height: 1px;
+    float: left;
+    padding-left: $gutter;
+    padding-right: $gutter;
+  }
+
+  @for $i from 1 through $numCols{
+
+    .col-#{$i}{
+      width: percentage($i / $numCols);
+    }
+
+  }
+}
+
+
+
